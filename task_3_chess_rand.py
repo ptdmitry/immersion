@@ -12,33 +12,29 @@ ONE = 1
 N = 8
 
 
-def queens(x: list[int], y: list[int], n=8):
-    idx = 4
-    while idx > 0:
-        for i in range(n):
-            for j in range(i + ONE, n):
-                if x[i] == x[j] or y[i] == y[j] or abs(x[i] - x[j]) == abs(y[i] - y[j]):
-                    return placement()
-        print(f'{x = }\n{y = }\n')
-        idx -= 1
-        if idx != 0:
-            return placement()
-    return True
+def queens(x: list[int], y: list[int], n=N):
+    for i in range(n):
+        for j in range(i + ONE, n):
+            if x[i] == x[j] or y[i] == y[j] or abs(x[i] - x[j]) == abs(y[i] - y[j]):
+                return placement()
+    return f'{x = }\n{y = }\n'
 
 
 def placement():
     x = []
     y = []
-    while len(x) < 8:
-        rnd_x = rni(1, 8)
+    while len(x) < N:
+        rnd_x = rni(ONE, N)
         if rnd_x not in x:
             x.append(rnd_x)
-    while len(y) < 8:
-        rnd_y = rni(1, 8)
+    while len(y) < N:
+        rnd_y = rni(ONE, N)
         if rnd_y not in y:
             y.append(rnd_y)
     return queens(x, y)
 
 
 if __name__ == '__main__':
-    print(placement())
+    for _ in range(4):
+        print(placement())
+        
