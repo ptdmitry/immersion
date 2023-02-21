@@ -8,16 +8,18 @@ __all__ = ['placement']
 
 from random import randint as rni
 
+ZERO = 0
 ONE = 1
 N = 8
 
 
 def queens(x: list[int], y: list[int], n=N):
+    res = True
     for i in range(n):
         for j in range(i + ONE, n):
             if x[i] == x[j] or y[i] == y[j] or abs(x[i] - x[j]) == abs(y[i] - y[j]):
-                return placement()
-    return f'{x = }\n{y = }\n'
+                return False
+    return True
 
 
 def placement():
@@ -31,10 +33,13 @@ def placement():
         rnd_y = rni(ONE, N)
         if rnd_y not in y:
             y.append(rnd_y)
-    return queens(x, y)
+    return x, y
 
 
 if __name__ == '__main__':
-    for _ in range(4):
-        print(placement())
-        
+    idx = 4
+    while idx > ZERO:
+        x, y = placement()
+        if queens(x, y):
+            print(f'{x = }\n{y = }\n')
+            idx -= ONE
