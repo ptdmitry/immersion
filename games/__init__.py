@@ -1,0 +1,1 @@
+__all__ = ['chess_rand', 'guess_num']
