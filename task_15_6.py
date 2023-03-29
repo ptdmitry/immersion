@@ -12,7 +12,6 @@
 
 import argparse
 import os
-import pathlib
 from pathlib import Path
 from collections import namedtuple
 import logging
@@ -21,9 +20,9 @@ logging.basicConfig(filename="tracker.log", encoding='utf-8', level=logging.INFO
 logger = logging.getLogger(__name__)
 
 
-def get_files(directory: pathlib.Path):
+def get_files(directory: Path):
     Object = namedtuple('Object', 'object_name, extension, catalog_flag, parent_dir')
-    all_files = pathlib.Path(directory).glob('*')
+    all_files = Path(directory).glob('*')
     for file in all_files:
         if file.is_file():
             file_name = file.name.split('.')[0]
